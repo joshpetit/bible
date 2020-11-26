@@ -10,7 +10,11 @@ class Bible {
     _keys.addAll(keys);
   }
 
-  static PassageQuery queryPassage(String queryReference,
+  static String getKey(String provider) {
+    return _keys[provider];
+  }
+
+  static Future<PassageQuery> queryPassage(String queryReference,
       {version: 'esv', Provider provider}) {
     if (provider == null) {
       provider = Provider.getDefaultProvider(version);
@@ -22,7 +26,6 @@ class Bible {
     if (!ref.isValid) {
       return null;
     }
-
     return provider.getPassage(ref);
   }
 }

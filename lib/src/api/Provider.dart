@@ -38,21 +38,14 @@ abstract class Provider {
 
   static List<Provider> getProviders() => _providers;
 
-  PassageQuery getPassage(BibleReference query);
+  Future<PassageQuery> getPassage(BibleReference query);
 }
 
 class ESVAPI extends Provider {
   ESVAPI() : super("esvapi", true, {'esv'});
 
   @override
-  PassageQuery getPassage(BibleReference query) {
-    PassageQuery res;
-    queryESV(query).then((x) => res = x);
-    print(res);
-    return res;
-  }
-
-  Future<PassageQuery> queryESV(BibleReference query) async {
+  Future<PassageQuery> getPassage(BibleReference query) async {
     final params = {
       'q': query.reference,
       'include-passage-references': 'false',
