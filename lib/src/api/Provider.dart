@@ -1,4 +1,5 @@
 import 'package:bible/src/model/PassageQuery.dart';
+import 'package:reference_parser/reference_parser.dart';
 
 abstract class Provider {
   final bool _requiresKey;
@@ -34,14 +35,14 @@ abstract class Provider {
 
   static List<Provider> getProviders() => _providers;
 
-  PassageQuery getPassage(String query);
+  PassageQuery getPassage(BibleReference query);
 }
 
 class ESVAPI extends Provider {
   ESVAPI() : super("esvapi", true, {'esv'});
 
   @override
-  PassageQuery getPassage(String query) {
+  PassageQuery getPassage(BibleReference query) {
     return null;
   }
 }
