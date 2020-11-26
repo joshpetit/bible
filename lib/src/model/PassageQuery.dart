@@ -16,8 +16,10 @@ class PassageQuery {
     }
   }
 
+  PassageQuery.fromProvider(this.query, this.passage, this.reference);
+
   @override
   String toString() {
-    return '${query}\n${reference}';
+    return '${reference}\n${passage}';
   }
 }
