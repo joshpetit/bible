@@ -10,12 +10,19 @@ class Bible {
     _keys.addAll(keys);
   }
 
-  static PassageQuery queryPassage(String queryReference, String version,
-      {provider: Provider}) {
+  static PassageQuery queryPassage(String queryReference,
+      {version: 'esv', Provider provider}) {
+    if (provider == null) {
+      provider = Provider.getDefaultProvider(version);
+    }
+    if (!provider.containsVersion(version)) {
+      return null;
+    }
     var ref = parseReference(queryReference);
     if (!ref.isValid) {
       return null;
     }
-    var reference = ref.reference;
+
+    return provider.getPassage(ref);
   }
 }
