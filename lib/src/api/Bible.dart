@@ -15,7 +15,7 @@ class Bible {
     if (provider == null) {
       provider = Provider.getDefaultProvider(version);
     }
-    if (!provider.containsVersion(version)) {
+    if (provider == null || !provider.containsVersion(version)) {
       return null;
     }
     var ref = parseReference(queryReference);
