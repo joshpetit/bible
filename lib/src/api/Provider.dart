@@ -28,8 +28,14 @@ abstract class Provider {
   bool containsVersion(String version) => _versions.contains(version);
   bool get requiresKey => _requiresKey;
 
-  static getDefaultProvider(String version) => _defaultProviders[version];
-  static getProvider(String provider) => _namedProviders[provider.toLowerCase];
+  static Provider getDefaultProvider(String version) =>
+      _defaultProviders[version];
+
+  static Provider getProvider(String provider) =>
+      _namedProviders[provider.toLowerCase];
+
+  static List<Provider> getProviders() => _providers;
+
   PassageQuery getPassage(String query);
 }
 

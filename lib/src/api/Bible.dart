@@ -10,7 +10,8 @@ class Bible {
     _keys.addAll(keys);
   }
 
-  static PassageQuery queryPassage(String queryReference) {
+  static PassageQuery queryPassage(String queryReference, String version,
+      {provider: Provider}) {
     var ref = parseReference(queryReference);
     if (!ref.isValid) {
       return null;
