@@ -11,9 +11,7 @@ abstract class Provider {
 
   static final Map<String, Provider> _namedProviders = {};
 
-  static final Map<String, Provider> _defaultProviders = {
-    "esv": _namedProviders['esvapi']
-  };
+  static final Map<String, Provider> _defaultProviders = {"esv": _providers[0]};
 
   static final Map<String, List<Provider>> _availableProviders = {};
 
