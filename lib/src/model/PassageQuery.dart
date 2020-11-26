@@ -18,11 +18,6 @@ class PassageQuery {
 
   @override
   String toString() {
-    return '${query}${reference}';
+    return '${query}\n${reference}';
   }
-}
-
-void main() {
-  var q = PassageQuery("jn 2:2");
-  print(q);
 }
