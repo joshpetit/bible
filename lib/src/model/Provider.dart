@@ -1,9 +1,10 @@
 import 'package:bible/src/model/PassageQuery.dart';
 
 abstract class Provider {
-  bool _requiresKey;
-  Set<String> _versions;
+  final bool _requiresKey;
+  final Set<String> _versions;
 
+  Provider(this._requiresKey, this._versions);
   bool containsVersion(String version) => _versions.contains(version);
   bool get requiresKey => _requiresKey;
 
