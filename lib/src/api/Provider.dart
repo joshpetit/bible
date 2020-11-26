@@ -1,5 +1,8 @@
 import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
+import 'Bible.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 abstract class Provider {
   final bool _requiresKey;
@@ -43,6 +46,29 @@ class ESVAPI extends Provider {
 
   @override
   PassageQuery getPassage(BibleReference query) {
-    return null;
+    PassageQuery res;
+    queryESV(query).then((x) => res = x);
+    print(res);
+    return res;
+  }
+
+  Future<PassageQuery> queryESV(BibleReference query) async {
+    final params = {
+      'q': query.reference,
+      'include-passage-references': 'false',
+      'indent-poetry': 'false',
+      'include-headings': 'false',
+      'include-footnotes': 'false',
+      'include-verse-numbers': 'false',
+      'include-short-copyright': 'false',
+      'include-passage-references': 'false'
+    };
+    final uri = Uri.https('api.esv.org', '/v3/passage/text/', params);
+    final res = await http.get(uri, headers: {
+      'Authorization': 'Token ${Bible.getKey('esvapi')}',
+    });
+    var json = jsonDecode(res.body);
+    var passage = json['passages'].join(' ');
+    return PassageQuery.fromProvider(query.reference, passage, query.reference);
   }
 }
