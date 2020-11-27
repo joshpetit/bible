@@ -62,6 +62,7 @@ class ESVAPI extends Provider {
     });
     var json = jsonDecode(res.body);
     var passage = json['passages'].join(' ');
-    return PassageQuery.fromProvider(query.reference, passage, query.reference);
+    return PassageQuery.fromProvider(query.reference, passage, query.reference,
+        extra: json);
   }
 }

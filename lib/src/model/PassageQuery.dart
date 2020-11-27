@@ -5,18 +5,14 @@ class PassageQuery {
   String passage;
   String reference;
   bool isValid;
+  final Map<String, String> verses;
 
-  PassageQuery(this.query) {
-    var ref = parseReference(query);
-    if (ref.isValid) {
-      this.reference = ref.reference;
-      isValid = true;
-    } else {
-      isValid = false;
-    }
-  }
+  /// Either the original response by the API
+  /// or extra information from the query, possibly null
+  final Map<String, dynamic> extra;
 
-  PassageQuery.fromProvider(this.query, this.passage, this.reference);
+  PassageQuery.fromProvider(this.query, this.passage, this.reference,
+      {this.verses, this.extra});
 
   @override
   String toString() {
