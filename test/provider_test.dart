@@ -4,6 +4,17 @@ import 'package:test/test.dart';
 import 'secrets.dart';
 
 void main() {
+  group('Test Bible', () {
+    setUp(() {
+      Bible.addKeys({'esvapi': 'esvKey', 'asvapi': 'asvKey'});
+    });
+
+    test('Keys can be queried ', () {
+      expect(Bible.getKey('esvapi'), equals('esvKey'));
+      expect(Bible.getKey('asvapi'), equals('asvKey'));
+    });
+  });
+
   group('Test Provider', () {
     test('Tests that the provider has the correct initialization', () {
       var s = Provider.getDefaultProvider('esv');
