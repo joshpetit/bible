@@ -30,7 +30,7 @@ abstract class Provider {
   bool get requiresKey => _requiresKey;
 
   static Provider getDefaultProvider(String version) =>
-      _defaultProviders[version];
+      _defaultProviders[version] ?? _availableProviders[version][0];
 
   static Provider getProvider(String provider) =>
       _namedProviders[provider.toLowerCase];
