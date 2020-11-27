@@ -1,22 +1,16 @@
-A library for Dart developers.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+# bible
+Bible is still in early development, contributions by implementing
+APIs is welcome!
 
 ## Usage
-
 A simple usage example:
 
 ```dart
 import 'package:bible/bible.dart';
 
-main() {
-  var awesome = new Awesome();
+void main() {
+  Bible.addKeys({'esvapi': 'APITOKEN'});
+  var passage = Bible.queryPassage('John 3:16');
 }
 ```
 
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
