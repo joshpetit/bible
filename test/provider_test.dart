@@ -16,10 +16,7 @@ void main() {
   });
 
   group('Test Provider', () {
-    test('Tests that the provider has the correct initialization', () {
-      var s = Provider.getDefaultProvider('esv');
-      expect(s, equals(Bible.ESV));
-    });
+    test('Tests that the provider has the correct initialization', () {});
   });
 
   group('Test API Providers', () {
@@ -37,7 +34,7 @@ void main() {
                 equals(
                     '[1] In the beginning, God created the heavens and the earth.')),
           });
-      passage = Bible.queryPassage('Genesis 1:1', provider: Bible.ESV);
+      passage = Bible.queryPassage('Genesis 1:1');
       passage.then((x) => {
             expect(
                 x.passage,
