@@ -15,7 +15,7 @@ class Bible {
   }
 
   static Future<PassageQuery> queryPassage(String queryReference,
-      {version: 'esv', Provider provider}) {
+      {version: 'esv', Provider provider, Map<String, String> parameters}) {
     if (provider == null) {
       provider = Provider.getDefaultProvider(version);
     }
@@ -26,6 +26,7 @@ class Bible {
     if (!ref.isValid) {
       return null;
     }
-    return provider.getPassage(ref);
+    parameters ??= {};
+    return provider.getPassage(ref, parameters: parameters);
   }
 }

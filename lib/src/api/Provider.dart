@@ -38,23 +38,29 @@ abstract class Provider {
 
   static List<Provider> getProviders() => _providers;
 
-  Future<PassageQuery> getPassage(BibleReference query);
+  Future<PassageQuery> getPassage(BibleReference query,
+      {Map<String, String> parameters});
 }
 
 class ESVAPI extends Provider {
   ESVAPI() : super("esvapi", true, {'esv'});
 
   @override
-  Future<PassageQuery> getPassage(BibleReference query) async {
+  Future<PassageQuery> getPassage(BibleReference query,
+      {Map<String, String> parameters}) async {
     final params = {
       'q': query.reference,
-      'include-passage-references': 'false',
-      'indent-poetry': 'false',
-      'include-headings': 'false',
-      'include-footnotes': 'false',
-      'include-verse-numbers': 'false',
-      'include-short-copyright': 'false',
-      'include-passage-references': 'false'
+      'include-passage-references':
+          '${parameters['include-passage-references'] ?? 'false'}',
+      'indent-poetry': '${parameters['indent-poetry'] ?? 'false'}',
+      'include-headings': '${parameters['include-headings'] ?? 'false'}',
+      'include-footnotes': '${parameters['include-footnotes'] ?? 'false'}',
+      'include-verse-numbers':
+          '${parameters['include-verse-numbers'] ?? 'false'}',
+      'include-short-copyright':
+          '${parameters['include-short-copyright'] ?? 'false'}',
+      'include-passage-references':
+          '${parameters['include-passage-references'] ?? 'false'}'
     };
     final uri = Uri.https('api.esv.org', '/v3/passage/text/', params);
     final res = await http.get(uri, headers: {
