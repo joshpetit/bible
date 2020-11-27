@@ -1,6 +1,6 @@
 import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
-import 'Bible.dart';
+import 'package:bible/bible.dart';
 
 abstract class Provider {
   final bool _requiresKey;

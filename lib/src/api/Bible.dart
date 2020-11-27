@@ -1,7 +1,7 @@
 import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
 import 'Provider.dart';
-import 'ESVAPI.dart';
+import 'package:bible/providers.dart';
 
 class Bible {
   static final Map _keys = <String, String>{};
