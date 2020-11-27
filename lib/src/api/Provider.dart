@@ -67,7 +67,7 @@ class ESVAPI extends Provider {
       'Authorization': 'Token ${Bible.getKey('esvapi')}',
     });
     var json = jsonDecode(res.body);
-    var passage = json['passages'].join(' ');
+    var passage = json['passages'].join(' ').trim();
     return PassageQuery.fromProvider(query.reference, passage, query.reference,
         extra: json);
   }
