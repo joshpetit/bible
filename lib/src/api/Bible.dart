@@ -3,7 +3,6 @@ import 'package:reference_parser/reference_parser.dart';
 import 'Provider.dart';
 
 class Bible {
-  static final ESV = Provider.getDefaultProvider('esv');
   static final Map _keys = <String, String>{};
 
   static addKeys(Map<String, String> keys) {
@@ -36,4 +35,6 @@ class Bible {
     parameters ??= {};
     return provider.getPassage(ref, parameters: parameters);
   }
+
+  static List<Provider> get providers => Provider.getProviders();
 }
