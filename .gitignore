@@ -32,3 +32,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+# API keys
+test/secrets.dart
