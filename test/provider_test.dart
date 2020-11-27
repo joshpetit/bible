@@ -27,7 +27,7 @@ void main() {
 
     test('ESV API', () {
       var passage = Bible.queryPassage('Genesis 1:1',
-          provider: Bible.ESV, parameters: {'include-verse-numbers': 'true'});
+          parameters: {'include-verse-numbers': 'true'});
       passage.then((x) => {
             expect(
                 x.passage,
