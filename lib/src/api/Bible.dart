@@ -14,6 +14,13 @@ class Bible {
     return _keys[provider];
   }
 
+  /// Query a provider for a bible passage
+  ///
+  /// [Bible] will use the recommended/default query
+  /// provider if the provider is not specified in the optional
+  /// parameter. If an adequet provider is not found to supply
+  /// the version request or if the reference is invalid, a
+  /// null value will be returned.
   static Future<PassageQuery> queryPassage(String queryReference,
       {version: 'esv', Provider provider, Map<String, String> parameters}) {
     if (provider == null) {
