@@ -10,7 +10,7 @@ class Bible {
   ];
   static final Map<String, BibleProvider> _namedProviders = {};
   static final Map<String, BibleProvider> _defaultProviders = {
-    "esv": _providers[0]
+    'esv': _providers[0]
   };
   static final Map<String, List<BibleProvider>> _availableProviders = {};
 
@@ -34,7 +34,7 @@ class Bible {
     return _keys[provider];
   }
 
-  static addKeys(Map<String, String> keys) {
+  static void addKeys(Map<String, String> keys) {
     _keys.addAll(keys);
   }
 
@@ -46,12 +46,10 @@ class Bible {
   /// the version request or if the reference is invalid, a
   /// null value will be returned.
   static Future<PassageQuery> queryPassage(String queryReference,
-      {version: 'esv',
+      {version = 'esv',
       BibleProvider provider,
       Map<String, String> parameters}) {
-    if (provider == null) {
-      provider = getDefaultProvider(version);
-    }
+    provider ??= getDefaultProvider(version);
     if (provider == null || !provider.containsVersion(version)) {
       return null;
     }

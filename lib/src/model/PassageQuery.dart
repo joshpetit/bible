@@ -1,5 +1,3 @@
-import 'package:reference_parser/reference_parser.dart';
-
 class PassageQuery {
   final String query;
   String passage;
