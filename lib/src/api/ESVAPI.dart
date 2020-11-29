@@ -3,10 +3,10 @@ import 'package:reference_parser/reference_parser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Bible.dart';
-import 'Provider.dart';
+import 'BibleProvider.dart';
 
-class ESVAPI extends Provider {
-  ESVAPI() : super("esvapi", true, {'esv'});
+class ESVAPI extends BibleProvider {
+  ESVAPI() : super('esvapi', true, {'esv'});
 
   @override
   Future<PassageQuery> getPassage(BibleReference query,

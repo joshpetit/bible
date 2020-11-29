@@ -1,5 +1,4 @@
 import 'package:bible/bible.dart';
-import 'package:bible/src/api/Provider.dart';
 import 'package:test/test.dart';
 import 'secrets.dart';
 

@@ -2,12 +2,12 @@ import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
 import 'package:bible/bible.dart';
 
-abstract class Provider {
+abstract class BibleProvider {
   final bool _requiresKey;
   final Set<String> _versions;
   final String name;
 
-  Provider(this.name, this._requiresKey, this._versions) {
+  BibleProvider(this.name, this._requiresKey, this._versions) {
     Bible.addProvider(this, _versions.toList());
   }
 

@@ -1,32 +1,34 @@
 import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
-import 'Provider.dart';
+import 'BibleProvider.dart';
 import 'package:bible/providers.dart';
 
 class Bible {
   static final Map _keys = <String, String>{};
-  static final List<Provider> _providers = [
+  static final List<BibleProvider> _providers = [
     ESVAPI(),
   ];
-  static final Map<String, Provider> _namedProviders = {};
-  static final Map<String, Provider> _defaultProviders = {"esv": _providers[0]};
-  static final Map<String, List<Provider>> _availableProviders = {};
+  static final Map<String, BibleProvider> _namedProviders = {};
+  static final Map<String, BibleProvider> _defaultProviders = {
+    "esv": _providers[0]
+  };
+  static final Map<String, List<BibleProvider>> _availableProviders = {};
 
-  static void addProvider(Provider provider, List<String> versions) {
+  static void addProvider(BibleProvider provider, List<String> versions) {
     versions.forEach((version) => {
-          _availableProviders.putIfAbsent(version, () => <Provider>[]),
+          _availableProviders.putIfAbsent(version, () => <BibleProvider>[]),
           _availableProviders[version].add(provider)
         });
     _namedProviders.putIfAbsent(provider.name, () => provider);
   }
 
-  static Provider getDefaultProvider(String version) =>
+  static BibleProvider getDefaultProvider(String version) =>
       _defaultProviders[version] ?? _availableProviders[version][0];
 
-  static Provider getProvider(String provider) =>
+  static BibleProvider getProvider(String provider) =>
       _namedProviders[provider.toLowerCase];
 
-  static List<Provider> get providers => _providers;
+  static List<BibleProvider> get providers => _providers;
 
   static String getKey(String provider) {
     return _keys[provider];
@@ -44,7 +46,9 @@ class Bible {
   /// the version request or if the reference is invalid, a
   /// null value will be returned.
   static Future<PassageQuery> queryPassage(String queryReference,
-      {version: 'esv', Provider provider, Map<String, String> parameters}) {
+      {version: 'esv',
+      BibleProvider provider,
+      Map<String, String> parameters}) {
     if (provider == null) {
       provider = getDefaultProvider(version);
     }
