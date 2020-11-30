@@ -10,7 +10,7 @@ class ESVAPI extends BibleProvider {
 
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters}) async {
+      {Map<String, String> parameters, String key}) async {
     final params = {
       'q': query.reference,
       'include-passage-references':
@@ -41,7 +41,7 @@ class ESVAPI extends BibleProvider {
     };
     final uri = Uri.https('api.esv.org', '/v3/passage/text/', params);
     final res = await http.get(uri, headers: {
-      'Authorization': 'Token ${Bible.getKey('esvapi')}',
+      'Authorization': 'Token ${key ?? Bible.getKey('esvapi')}',
     });
     var json = jsonDecode(res.body);
     var passage = json['passages'].join(' ').trim();

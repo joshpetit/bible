@@ -48,7 +48,8 @@ class Bible {
   static Future<PassageQuery> queryPassage(String queryReference,
       {version = 'esv',
       BibleProvider provider,
-      Map<String, String> parameters}) {
+      Map<String, String> parameters,
+      String key}) {
     provider ??= getDefaultProvider(version);
     if (provider == null || !provider.containsVersion(version)) {
       return null;
@@ -58,6 +59,6 @@ class Bible {
       return null;
     }
     parameters ??= {};
-    return provider.getPassage(ref, parameters: parameters);
+    return provider.getPassage(ref, parameters: parameters, key: key);
   }
 }
