@@ -54,6 +54,11 @@ class Bible {
     if (provider == null || !provider.containsVersion(version)) {
       return null;
     }
+
+    if (provider.requiresKey &&
+        (key == null && !_keys.containsKey(provider.name))) {
+      return null;
+    }
     var ref = parseReference(queryReference);
     if (!ref.isValid) {
       return null;
