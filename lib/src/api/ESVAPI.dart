@@ -41,7 +41,7 @@ class ESVAPI extends BibleProvider {
     };
     final uri = Uri.https('api.esv.org', '/v3/passage/text/', params);
     final res = await http.get(uri, headers: {
-      'Authorization': 'Token ${key ?? Bible.getKey('esvapi')}',
+      'Authorization': 'Token ${key}',
     });
     var json = jsonDecode(res.body);
     var passage = json['passages'].join(' ').trim();
