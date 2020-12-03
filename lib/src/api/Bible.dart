@@ -65,6 +65,7 @@ class Bible {
     }
 
     parameters ??= {};
-    return provider.getPassage(ref, parameters: parameters, key: key);
+    return provider.getPassage(ref,
+        parameters: parameters, key: key, version: version);
   }
 }

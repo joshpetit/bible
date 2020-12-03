@@ -18,5 +18,5 @@ abstract class BibleProvider {
   List<String> get versions => _versions.toList();
 
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key});
+      {Map<String, String> parameters, String key, String version});
 }

@@ -10,7 +10,7 @@ class ESVAPI extends BibleProvider {
 
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key}) async {
+      {Map<String, String> parameters, String key, String version}) async {
     final params = {
       'q': query.reference,
       'include-passage-references':
