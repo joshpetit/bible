@@ -49,7 +49,11 @@ class Bible {
       {version = 'esv',
       BibleProvider provider,
       Map<String, String> parameters,
+      String providerName,
       String key}) {
+    if (provider == null && providerName != null) {
+      provider = getProvider(providerName);
+    }
     provider ??= getDefaultProvider(version);
     if (provider == null || !provider.containsVersion(version)) {
       return null;
