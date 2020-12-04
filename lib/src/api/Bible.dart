@@ -7,6 +7,7 @@ class Bible {
   static final Map _keys = <String, String>{};
   static final List<BibleProvider> _providers = [
     ESVAPI(),
+    GetBible(),
   ];
   static final Map<String, BibleProvider> _namedProviders = {};
   static final Map<String, BibleProvider> _defaultProviders = {
