@@ -27,11 +27,18 @@ class GetBible extends BibleProvider {
     };
     final uri = Uri.https('getbible.net', '/json', params);
     final res = await http.get(uri);
-    print(res);
     var json = jsonDecode(res.body.substring(1, res.body.length - 2));
-    JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    String pp = encoder.convert(json);
-    print(pp);
-    return null;
+    var extra = json;
+    var ref = query.reference;
+    var book = json['book'][0];
+    var chapter = book['chapter'];
+    var verses = <String, String>{};
+    StringBuffer passage = StringBuffer();
+    chapter.keys.forEach((x) => {
+          verses[x] = chapter[x]['verse'],
+          passage.write(chapter[x]['verse'] + ' ')
+        });
+    return PassageQuery.fromProvider(passage.toString(), ref,
+        verses: verses, extra: extra);
   }
 }
