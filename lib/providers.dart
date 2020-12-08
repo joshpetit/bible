@@ -3,3 +3,4 @@ library providers;
 
 export 'src/api/BibleProvider.dart';
 export 'src/api/ESVAPI.dart';
+export 'src/api/GetBible.dart';
