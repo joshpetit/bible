@@ -16,6 +16,14 @@ class Bible {
   };
   static final Map<String, List<BibleProvider>> _availableProviders = {};
 
+  /// Adds a [BibleProvider] to the list of available providers.
+  ///
+  /// You can implement your own provider by extending the
+  /// [BibleProvider] class and then implementing the constructor and
+  /// [BibleProvider.getPassage] command. This would be useful in circumstances
+  /// where you would like to be able to switch out versions but don't
+  /// have a certain API in the [providers] library. If you do this please consider
+  /// sending a pull request and adding your provider to the [providers] library!
   static void addProvider(BibleProvider provider, List<String> versions) {
     versions.forEach((version) => {
           _availableProviders.putIfAbsent(version, () => <BibleProvider>[]),
@@ -24,23 +32,45 @@ class Bible {
     _namedProviders.putIfAbsent(provider.name, () => provider);
   }
 
+  /// Returns the default [BibleProvider] for a version.
+  ///
+  /// The default provider is the provider used in cases
+  /// where a provider is not explicitly passed in the
+  /// [queryPassage] parameters.
   static BibleProvider getDefaultProvider(String version) =>
       _defaultProviders[version] ?? _availableProviders[version][0];
 
+  /// Returns the [BibleProvider] based on name.
+  ///
+  /// See the [providers] library for the list of
+  /// available [BibleProvider]s and their names.
   static BibleProvider getProvider(String provider) =>
       _namedProviders[provider.toLowerCase];
 
+  /// Returns a list of all the [BibleProvider]s.
+  ///
+  /// [Bible] comes with a list of providers which
+  /// can be used within the [queryPassage] method.
   static List<BibleProvider> get providers => _providers;
 
+  /// Returns the key for a [BibleProvider].
   static String getKey(String provider) {
     return _keys[provider];
   }
 
+  /// Adds API key to the Bible Map.
+  ///
+  /// The key of the map must be the name of the
+  /// bible provider in lowercase single-word format
+  /// i.e 'Esv API' -> 'esvapi'. See the read me or
+  /// the [providers] library for the registered name
+  /// of every API.
   static void addKeys(Map<String, String> keys) {
     _keys.addAll(keys);
   }
 
-  /// Query a provider for a bible passage
+  /// Query a provider for a bible passage.
+  ///
   /// [Bible] will use the recommended/default query
   /// provider if the provider is not specified in the optional
   /// parameter. If an adequet provider is not found to supply
