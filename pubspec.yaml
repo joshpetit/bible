@@ -1,6 +1,6 @@
 name: bible
-description: A starting point for Dart libraries or applications.
-version: 0.5.0
+description: A simple application to interact with multiple bible APIs from a single place
+version: 0.6.0
 homepage: https://github.com/joshpetit/bible/
 
 environment:
