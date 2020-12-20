@@ -12,11 +12,6 @@ final List<BibleProvider> _providers = [
   GetBible(),
 ];
 
-/// The bible providers in map format
-///
-/// Providers are added to this map when their constructor is called.
-final Map<String, BibleProvider> _namedProviders = {};
-
 final Map<String, String> _defaultProviders = {
   'esv': 'esvapi',
   'asv': 'getbible',
