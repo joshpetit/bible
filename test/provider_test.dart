@@ -25,6 +25,7 @@ void main() {
 
     test('ESV API', () {
       var passage = Bible.queryPassage('Genesis 1:1',
+          providerName: 'esvapi',
           parameters: {'include-verse-numbers': 'true'});
       passage.then((x) => {
             expect(
@@ -32,7 +33,10 @@ void main() {
                 equals(
                     '[1] In the beginning, God created the heavens and the earth.')),
           });
-      passage = Bible.queryPassage('Genesis 1:1');
+      passage = Bible.queryPassage(
+        'Genesis 1:1',
+        providerName: 'esvapi',
+      );
       passage.then((x) => {
             expect(
                 x.passage,
