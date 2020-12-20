@@ -4,11 +4,18 @@ import 'BibleProvider.dart';
 import 'package:bible/providers.dart';
 
 class Bible {
+  /// The API keys saved by the user.
   static final Map _keys = <String, String>{};
+
+  /// The usable bible bible sources.
   static final List<BibleProvider> _providers = [
     ESVAPI(),
     GetBible(),
   ];
+
+  /// The bible providers in map format
+  ///
+  /// Providers are added to this map when their constructor is called
   static final Map<String, BibleProvider> _namedProviders = {};
   static final Map<String, BibleProvider> _defaultProviders = {
     'esv': _providers[0],
