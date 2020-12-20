@@ -7,9 +7,7 @@ abstract class BibleProvider {
   final Set<String> _versions;
   final String name;
 
-  BibleProvider(this.name, this._requiresKey, this._versions) {
-    Bible.addProvider(this, _versions.toList());
-  }
+  BibleProvider(this.name, this._requiresKey, this._versions);
 
   bool containsVersion(String version) => _versions.contains(version);
 
