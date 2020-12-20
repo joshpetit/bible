@@ -80,7 +80,7 @@ void addKeys(Map<String, String> keys) {
 /// the version request or if the reference is invalid, a
 /// null value will be returned.
 Future<PassageQuery> queryPassage(String queryReference,
-    {version = 'asv',
+    {String version,
     BibleProvider provider,
     Map<String, String> parameters,
     String providerName,
@@ -88,8 +88,10 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (provider == null && providerName != null) {
     provider = getProvider(providerName);
   }
-  provider ??= getDefaultProvider(version);
-  if (provider == null || !provider.containsVersion(version)) {
+  if (version != null) {
+    provider ??= getDefaultProvider(version);
+  }
+  if (provider == null) {
     return null;
   }
   var ref = parseReference(queryReference);

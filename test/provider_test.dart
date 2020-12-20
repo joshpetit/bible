@@ -28,7 +28,6 @@ void main() {
     test('ESV API', () {
       var passage = Bible.queryPassage('Genesis 1:1',
           providerName: 'esvapi',
-          version: 'esv',
           parameters: {'include-verse-numbers': 'true'});
       passage.then((x) => {
             expect(
@@ -39,7 +38,6 @@ void main() {
       passage = Bible.queryPassage(
         'Genesis 1:1',
         providerName: 'esvapi',
-        version: 'esv',
       );
       passage.then((x) => {
             expect(
