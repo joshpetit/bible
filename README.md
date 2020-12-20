@@ -63,3 +63,5 @@ APIs that need implementing:
 | [nltapi](http://api.nlt.to/) | easy |
 | [bibliaapi](https://bibliaapi.com/docs/) | moderate |
 | [scriptureapi](https://scripture.api.bible/) | hard |
+
+For more specific information look at the contributing guidlines.
