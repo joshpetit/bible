@@ -50,6 +50,9 @@ BibleProvider getProvider(String provider) {
   return _providers.firstWhere((x) => x.name == provider.toLowerCase());
 }
 
+/// Get all the [BibleProvider]s available
+List<BibleProvider> getProviders() => _providers;
+
 /// Returns a list of all the [BibleProvider]s.
 ///
 /// [Bible] comes with a list of providers which
