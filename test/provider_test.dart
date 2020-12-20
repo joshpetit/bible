@@ -25,7 +25,11 @@ void main() {
       passage.then((x) =>
           {expect(x.verses.length, equals(4)), expect(x.extra, isNot(null))});
     });
+
     test('ESV API', () {
+      if (Bible.getKey('esvapi') == null) {
+        return;
+      }
       var passage = Bible.queryPassage('Genesis 1:1',
           providerName: 'esvapi',
           parameters: {'include-verse-numbers': 'true'});
