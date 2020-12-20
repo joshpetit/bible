@@ -2,7 +2,6 @@ import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'Bible.dart';
 import 'BibleProvider.dart';
 
 class GetBible extends BibleProvider {
@@ -22,8 +21,8 @@ class GetBible extends BibleProvider {
   Future<PassageQuery> getPassage(BibleReference query,
       {Map<String, String> parameters, String key, String version}) async {
     final params = {
-      "passage": query.reference,
-      "version": version,
+      'passage': query.reference,
+      'version': version,
     };
     final uri = Uri.https('getbible.net', '/json', params);
     final res = await http.get(uri);
@@ -33,7 +32,7 @@ class GetBible extends BibleProvider {
     var book = json['book'][0];
     var chapter = book['chapter'];
     var verses = <String, String>{};
-    StringBuffer passage = StringBuffer();
+    var passage = StringBuffer();
     chapter.keys.forEach((x) => {
           verses[x] = chapter[x]['verse'],
           passage.write(chapter[x]['verse'] + ' ')

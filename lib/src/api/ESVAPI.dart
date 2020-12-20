@@ -2,7 +2,6 @@ import 'package:bible/src/model/PassageQuery.dart';
 import 'package:reference_parser/reference_parser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'Bible.dart';
 import 'BibleProvider.dart';
 
 class ESVAPI extends BibleProvider {
