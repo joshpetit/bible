@@ -4,9 +4,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'BibleProvider.dart';
 
+/// A provider for the ESV bible translation. Requires an API key.
+///
+/// Activate an API key [here](https://my.crossway.org/account/register/).
 class ESVAPI extends BibleProvider {
   ESVAPI() : super('esvapi', true, {'esv'});
 
+  /// Queries the [esvapi](https://api.esv.org/).
   @override
   Future<PassageQuery> getPassage(BibleReference query,
       {Map<String, String> parameters, String key, String version}) async {

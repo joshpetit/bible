@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'BibleProvider.dart';
 
+/// A free API service that requires no API key.
 class GetBible extends BibleProvider {
   GetBible()
       : super('getbible', false, {
@@ -17,6 +18,7 @@ class GetBible extends BibleProvider {
           'ylt'
         });
 
+  /// Queries [getbible.net](https://getbible.net/api).
   @override
   Future<PassageQuery> getPassage(BibleReference query,
       {Map<String, String> parameters, String key, String version}) async {
