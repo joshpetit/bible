@@ -96,7 +96,7 @@ Future<PassageQuery> queryPassage(String queryReference,
   }
   var ref = parseReference(queryReference);
   if (!ref.isValid) {
-    return null;
+    ref = Reference(queryReference);
   }
 
   key ??= getKey(provider.name);
