@@ -101,7 +101,7 @@ Future<PassageQuery> queryPassage(String queryReference,
   }
   BibleReference ref;
   if (useParser) {
-    var ref = parseReference(queryReference);
+    ref = parseReference(queryReference);
   }
   // Tries to parse the reference, if unable just use the original query.
   if (ref == null || !ref.isValid) {
