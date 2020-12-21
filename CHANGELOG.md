@@ -1,3 +1,6 @@
+## 0.6.4
+- Fixes broken queryPassage function.
+
 ## 0.6.3
 - The queryPassage function defaults to `getbible`
 
