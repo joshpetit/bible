@@ -1,36 +1,36 @@
-import 'package:bible/bible.dart' as Bible;
+import 'package:bible/bible.dart' as bible;
 import 'package:test/test.dart';
 import 'secrets.dart';
 
 void main() {
-  group('Test Bible', () {
+  group('Test bible', () {
     setUp(() {
-      Bible.addKeys({'esvapi': 'esvKey', 'asvapi': 'asvKey'});
+      bible.addKeys({'esvapi': 'esvKey', 'asvapi': 'asvKey'});
     });
 
     test('Keys can be queried', () {
-      expect(Bible.getKey('esvapi'), equals('esvKey'));
+      expect(bible.getKey('esvapi'), equals('esvKey'));
     });
   });
 
   group('Test API Providers', () {
     setUp(() {
       var keys = getKeys();
-      Bible.addKeys(keys);
+      bible.addKeys(keys);
     });
 
-    test('GetBible', () {
-      var passage = Bible.queryPassage('Genesis 1:1-4',
+    test('Getbible', () {
+      var passage = bible.queryPassage('Genesis 1:1-4',
           version: 'asv', providerName: 'getbible');
       passage.then((x) =>
           {expect(x.verses.length, equals(4)), expect(x.extra, isNot(null))});
     });
 
     test('ESV API', () {
-      if (Bible.getKey('esvapi') == null) {
+      if (bible.getKey('esvapi') == null) {
         return;
       }
-      var passage = Bible.queryPassage('Genesis 1:1',
+      var passage = bible.queryPassage('Genesis 1:1',
           providerName: 'esvapi',
           parameters: {'include-verse-numbers': 'true'});
       passage.then((x) => {
@@ -39,7 +39,7 @@ void main() {
                 equals(
                     '[1] In the beginning, God created the heavens and the earth.')),
           });
-      passage = Bible.queryPassage(
+      passage = bible.queryPassage(
         'Genesis 1:1',
         providerName: 'esvapi',
       );
