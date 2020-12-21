@@ -87,6 +87,7 @@ Future<PassageQuery> queryPassage(String queryReference,
     {String version,
     BibleProvider provider,
     Map<String, String> parameters,
+    useParser = true,
     String providerName,
     String key}) {
   if (provider == null && providerName != null) {
@@ -98,8 +99,11 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (provider == null) {
     return null;
   }
-  // Tries to parse the reference, if unable just use original query
-  var ref = parseReference(queryReference);
+  BibleReference ref;
+  if (useParser) {
+    var ref = parseReference(queryReference);
+  }
+  // Tries to parse the reference, if unable just use the original query.
   if (ref == null || !ref.isValid) {
     ref = Reference(queryReference);
   }
