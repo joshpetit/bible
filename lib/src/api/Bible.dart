@@ -96,7 +96,7 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (version != null && provider == null) {
     provider ??= getDefaultProvider(version);
   } else if (provider == null) {
-    provider = _defaultProviders('asv');
+    provider = getProvider('getbible');
   }
 
   if (provider == null) {
