@@ -3,17 +3,42 @@
 Contributing is fairly easy, if you are only familiar with JavaScript or Java the Dart syntax is similar.
 
 ## Start
+I would recommend simply copying a file as a starting point, for instance the 'ESVAPI.dart' file.
 
-I would recommend simply cloning a file as a starting point, for example, clone the 'GetBible.dart' file.
+The API implementations are within the `api` package:
+```
+.
+├── lib
+│   ├── bible.dart
+│   ├── providers.dart
+│   └── src
+│       ├── api
+│       │   ├── Bible.dart
+│       │   ├── BibleProvider.dart
+│       │   ├── ESVAPI.dart
+│       │   └── GetBible.dart
+│       └── model
+│           └── PassageQuery.dart
+└── test
+    ├── provider_test.dart
+    └── secrets.dart
+```
+So copy ESVAPI.dart and paste it into the same directory as `APINAME.dart`.
 
-After this, rename the class and the `name` of the API. Then go to the corresponding API site and place
-all versions offered by that API into the map in the constructor. Afterwards it should look
-something like this:
+After this, within the file rename the class and the `name` of the API.
+
+### Implementing the Constructor
+The first parameter is the name of the API, the second is whether it requires an API key,
+and the third is the versions offered by the service.
+To get the versions offered go to the site and copy
+all translations offered by that API (if there are lot just include the english versions) into the set in the constructor.
+
+It should look something like this afterwards:
 
 ```dart
 class APINAME extends BibleProvider {
   APINAME()
-      : super('api-name', false, { 
+      : super('apiname', false, { 
           'akjv',
           'asv',
 		  //...
@@ -21,9 +46,8 @@ class APINAME extends BibleProvider {
 //...
 }
 ```
-Note that the second parameter is whether the API requires an API key.
 
-## Implement
+## Implement getPassage
 
 Implement the `getPassage` method for the API, the signature
 of the method should be as follows:
@@ -36,6 +60,8 @@ of the method should be as follows:
 
 If you're unfamiliar with dart or JavaScript, the `async` word just indicates
 that the function will return a future and may be run asynchronously.
+The Dart documentation is very thorough so you can figure out how to do what's
+needed by looking at APIs already implemented and google.
 
 After implementing the `getPassage` method return a PassageQuery object.
 **Note:** A PassageQuery object has an optional field called `verses`, this
