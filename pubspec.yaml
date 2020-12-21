@@ -1,6 +1,6 @@
 name: bible
 description: A simple application to interact with multiple bible APIs from a single place
-version: 0.6.2
+version: 0.6.3
 homepage: https://github.com/joshpetit/bible/
 
 environment:

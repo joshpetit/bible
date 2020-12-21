@@ -1,3 +1,6 @@
+## 0.6.3
+- The queryPassage function defaults to `getbible`
+
 ## 0.6.2
 - Adds parameter to query to skip reference parsing
 
