@@ -6,7 +6,7 @@ import 'package:bible/providers.dart';
 /// The API keys saved by the user.
 final Map _keys = <String, String>{};
 
-/// The usable bible bible sources.
+/// The usable bible sources.
 final List<BibleProvider> _providers = [
   ESVAPI(),
   GetBible(),
@@ -98,8 +98,9 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (provider == null) {
     return null;
   }
+  // Tries to parse the reference, if unable just use original query
   var ref = parseReference(queryReference);
-  if (!ref.isValid) {
+  if (ref == null || !ref.isValid) {
     ref = Reference(queryReference);
   }
 
