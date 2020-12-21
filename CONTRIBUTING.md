@@ -35,7 +35,7 @@ of the method should be as follows:
 ```
 
 If you're unfamiliar with dart or JavaScript, the `async` word just indicates
-that the function will return a future and may be run asynchronously
+that the function will return a future and may be run asynchronously.
 
 After implementing the `getPassage` method return a PassageQuery object.
 **Note:** A PassageQuery object has an optional field called `verses`, this
@@ -55,3 +55,24 @@ to the `_providers` array within the `Bible.dart` file.
 
 And done! Once finished you can add the new provider to the README and add a short doc comments
 to the class name and the `getPassage` method.
+
+## Testing
+
+When writing a test you can just copy the test case for `getbible` in the 'Test API Providers' group
+and change the needed names and fields. When running tests you need to create a file named
+secrets.dart with a varaible called 'keys'. like this:
+```dart
+const keys = {
+'api-name': 'api-key',
+'other-api': 'other-key',
+};
+```
+
+if the API you implement requires a key, when writing a test, make sure to write a test
+to ensure the API key is included before running the test, such as this:
+```dart
+if (bible.getKey('api-name') == null) {
+    return;
+}
+```
+
