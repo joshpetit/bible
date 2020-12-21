@@ -28,6 +28,7 @@ class GetBible extends BibleProvider {
     };
     final uri = Uri.https('getbible.net', '/json', params);
     final res = await http.get(uri);
+    // The response from the API isn't formated for Dart's json decoder
     var json = jsonDecode(res.body.substring(1, res.body.length - 2));
     var extra = json;
     var ref = query.reference;

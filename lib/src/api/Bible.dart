@@ -12,6 +12,7 @@ final List<BibleProvider> _providers = [
   GetBible(),
 ];
 
+/// The prefered way to fetch certain versions
 final Map<String, String> _defaultProviders = {
   'esv': 'esvapi',
   'asv': 'getbible',
