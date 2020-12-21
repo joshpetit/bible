@@ -1,6 +1,6 @@
 import 'package:bible/bible.dart' as bible;
 import 'package:test/test.dart';
-import 'secrets.dart';
+import 'secrets.dart' as secrets;
 
 void main() {
   group('Test bible', () {
@@ -54,5 +54,5 @@ void main() {
 }
 
 Map<String, String> getKeys() {
-  return Secrets.keys;
+  return secrets.keys;
 }
