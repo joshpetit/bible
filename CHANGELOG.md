@@ -1,4 +1,4 @@
-## 0.6.0
+## 0.6.2
 - Adds parameter to query to skip reference parsing
 
 ## 0.6.0
