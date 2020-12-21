@@ -93,9 +93,12 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (provider == null && providerName != null) {
     provider = getProvider(providerName);
   }
-  if (version != null) {
+  if (version != null && provider == null) {
     provider ??= getDefaultProvider(version);
+  } else if (provider == null) {
+    provider = _defaultProviders('asv');
   }
+
   if (provider == null) {
     return null;
   }
