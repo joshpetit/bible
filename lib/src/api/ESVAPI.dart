@@ -48,6 +48,7 @@ class ESVAPI extends BibleProvider {
     });
     var json = jsonDecode(res.body);
     var passage = json['passages'].join(' ').trim();
-    return PassageQuery.fromProvider(passage, json['canonical'], extra: json);
+    return PassageQuery.fromProvider(passage, json['canonical'], 'ESV',
+        extra: json);
   }
 }

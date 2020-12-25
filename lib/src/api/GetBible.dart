@@ -32,6 +32,7 @@ class GetBible extends BibleProvider {
     var json = jsonDecode(res.body.substring(1, res.body.length - 2));
     var extra = json;
     var ref = query.reference;
+    var jVersion = json['version'].toUpperCase();
     var book = json['book'][0];
     var chapter = book['chapter'];
     var verses = <String, String>{};
@@ -40,7 +41,7 @@ class GetBible extends BibleProvider {
           verses[x] = chapter[x]['verse'],
           passage.write(chapter[x]['verse'] + ' ')
         });
-    return PassageQuery.fromProvider(passage.toString(), ref,
+    return PassageQuery.fromProvider(passage.toString(), ref, jVersion,
         verses: verses, extra: extra);
   }
 }

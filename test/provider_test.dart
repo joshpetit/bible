@@ -22,8 +22,11 @@ void main() {
     test('Getbible', () {
       var passage = bible.queryPassage('Genesis 1:1-4',
           version: 'asv', providerName: 'getbible');
-      passage.then((x) =>
-          {expect(x.verses.length, equals(4)), expect(x.extra, isNot(null))});
+      passage.then((x) => {
+            expect(x.verses.length, equals(4)),
+            expect(x.extra, isNot(null)),
+            expect(x.version, equals('ASV'))
+          });
     });
 
     test('ESV API', () {
@@ -48,6 +51,7 @@ void main() {
                 x.passage,
                 equals(
                     'In the beginning, God created the heavens and the earth.')),
+            expect(x.version, equals('ESV')),
           });
     });
   });
