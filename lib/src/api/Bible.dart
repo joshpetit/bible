@@ -10,6 +10,7 @@ final Map _keys = <String, String>{};
 final List<BibleProvider> _providers = [
   ESVAPI(),
   GetBible(),
+  BibleOrg(),
 ];
 
 /// The prefered way to fetch certain versions

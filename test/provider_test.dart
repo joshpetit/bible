@@ -48,6 +48,13 @@ void main() {
           equals('In the beginning, God created the heavens and the earth.'));
       expect(passage.version, equals('ESV'));
     });
+
+    test('BibleOrg', () async {
+      var passage =
+          await bible.queryPassage('Genesis 1:1-4', providerName: 'bibleorg');
+      expect(passage.version, equals('NET'));
+      expect(passage.verses.length, equals(4));
+    });
   });
 }
 
