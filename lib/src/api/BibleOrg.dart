@@ -9,6 +9,9 @@ class BibleOrg extends BibleProvider {
   BibleOrg() : super('bibleorg', false, {'net'});
 
   /// Queries [bible.org](https://labs.bible.org/api_web_service).
+  ///
+  /// Note that the [extra] field will return a list within the
+  /// extra.extra field. This contains the original API response.
   @override
   Future<PassageQuery> getPassage(BibleReference query,
       {Map<String, String> parameters, String key, String version}) async {

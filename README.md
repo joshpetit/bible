@@ -8,6 +8,7 @@ This package currently only supports querying these APIs:
 | ----- | --------- |
 | [esvapi](https://api.esv.org/) | yes |
 | [getbible](https://getbible.net/api) | no |
+| [bibleorg](https://labs.bible.org/api_web_service) | no |
 
 Simple example:
 
@@ -72,7 +73,6 @@ APIs that need implementing:
 | Name |  Difficulty|
 | ----- | --------- |
 | [bibleapi](https://bible-api.com/) | easy |
-| [bibleorg](https://labs.bible.org/api_web_service) | easy |
 | [nltapi](https://api.nlt.to/) | easy |
 | [bibliaapi](https://bibliaapi.com/docs/) | moderate |
 | [scriptureapi](https://scripture.api.bible/) | hard |
