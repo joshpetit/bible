@@ -1,3 +1,7 @@
+## 0.7.0
+- Adds version information to PassageQuery
+- Adds version information to the toString of PassageQuery
+- Adds the [bible.org](https://labs.bible.org/api_web_service) API
 ## 0.6.4
 - Fixes broken queryPassage function.
 
