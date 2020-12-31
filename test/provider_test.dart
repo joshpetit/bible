@@ -19,40 +19,34 @@ void main() {
       bible.addKeys(keys);
     });
 
-    test('Getbible', () {
-      var passage = bible.queryPassage('Genesis 1:1-4',
+    test('Getbible', () async {
+      var passage = await bible.queryPassage('Genesis 1:1-4',
           version: 'asv', providerName: 'getbible');
-      passage.then((x) => {
-            expect(x.verses.length, equals(4)),
-            expect(x.extra, isNot(null)),
-            expect(x.version, equals('ASV'))
-          });
+
+      expect(passage.verses.length, equals(4));
+      expect(passage.extra, isNot(null));
+      expect(passage.version, equals('ASV'));
     });
 
-    test('ESV API', () {
+    test('ESV API', () async {
       if (bible.getKey('esvapi') == null) {
         return;
       }
-      var passage = bible.queryPassage('Genesis 1:1',
+      var passage = await bible.queryPassage('Genesis 1:1',
           providerName: 'esvapi',
           parameters: {'include-verse-numbers': 'true'});
-      passage.then((x) => {
-            expect(
-                x.passage,
-                equals(
-                    '[1] In the beginning, God created the heavens and the earth.')),
-          });
-      passage = bible.queryPassage(
+      expect(
+          passage.passage,
+          equals(
+              '[1] In the beginning, God created the heavens and the earth.'));
+      expect(passage.version, equals('ESV'));
+      passage = await bible.queryPassage(
         'Genesis 1:1',
         providerName: 'esvapi',
       );
-      passage.then((x) => {
-            expect(
-                x.passage,
-                equals(
-                    'In the beginning, God created the heavens and the earth.')),
-            expect(x.version, equals('ESV')),
-          });
+      expect(passage.passage,
+          equals('In the beginning, God created the heavens and the earth.'));
+      expect(passage.version, equals('ESV'));
     });
   });
 }
