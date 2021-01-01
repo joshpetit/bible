@@ -41,7 +41,7 @@ class GetBible extends BibleProvider {
           verses[x] = chapter[x]['verse'],
           passage.write(chapter[x]['verse'] + ' ')
         });
-    return PassageQuery.fromProvider(passage.toString(), ref, jVersion,
+    return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
         verses: verses, extra: extra);
   }
 }
