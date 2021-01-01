@@ -22,7 +22,6 @@ class BibleOrg extends BibleProvider {
     final uri = Uri.https('labs.bible.org', '/api/', params);
     final res = await http.get(uri);
     var json = jsonDecode(res.body);
-    print(json);
     var passage = StringBuffer();
     var verses = <String, String>{};
     var extra = {
@@ -32,7 +31,6 @@ class BibleOrg extends BibleProvider {
           passage.write(x['text']),
           verses[x['verse']] = x['text'],
         });
-    print(verses);
     return PassageQuery.fromProvider(passage.toString(), query.reference, 'NET',
         extra: extra, verses: verses);
   }
