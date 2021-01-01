@@ -1,3 +1,7 @@
+## 0.7.1
+- Removes print statement fromBible Org
+- Trims GetBible API responses
+
 ## 0.7.0
 - Adds version information to PassageQuery
 - Adds version information to the toString of PassageQuery
