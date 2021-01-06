@@ -33,8 +33,17 @@ class GetBible extends BibleProvider {
     var extra = json;
     var ref = query.reference;
     var jVersion = json['version'].toUpperCase();
-    var book = json['book'][0];
+    var book = json['book'];
+    if (book != null) {
+      book = book[0];
+    } else {
+      var encoder = new JsonEncoder.withIndent("  ");
+      //print(encoder.convert(json['chapter']));
+      book = json;
+    }
     var chapter = book['chapter'];
+    //print(chapter);
+    if (chapter == null) {}
     var verses = <String, String>{};
     var passage = StringBuffer();
     chapter.keys.forEach((x) => {
