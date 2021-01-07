@@ -4,11 +4,11 @@ This package provides a simple interface for interacting with different bible AP
 ## Usage
 This package currently only supports querying these APIs:
 
-| Name | Requires API key|
-| ----- | --------- |
-| [esvapi](https://api.esv.org/) | yes |
-| [getbible](https://getbible.net/api) | no |
-| [bibleorg](https://labs.bible.org/api_web_service) | no |
+| Name | Requires API key| notes |
+| ----- | --------- | ---- |
+| [esvapi](https://api.esv.org/) | yes |	|
+| [getbible](https://getbible.net/api) | no |Does not (currently) support cross chapter references (i.e Genesis 2:1 - 3:4). |
+| [bibleorg](https://labs.bible.org/api_web_service) | no |	 |
 
 Simple example:
 

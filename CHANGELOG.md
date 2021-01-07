@@ -1,3 +1,6 @@
+## 0.7.2
+- Fixes getbible API multi chapter calls
+
 ## 0.7.1
 - Removes print statement fromBible Org
 - Trims GetBible API responses
