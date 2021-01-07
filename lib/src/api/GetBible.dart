@@ -33,9 +33,9 @@ class GetBible extends BibleProvider {
     var extra = <String, dynamic>{};
     var ref = query.reference;
     if (refObj.startChapterNumber != refObj.endChapterNumber) {
-      ref = "${refObj.startChapter.toString()} - ref.endChapterNumber}";
+      ref = '${refObj.startChapter.toString()}-${refObj.endChapterNumber}';
     }
-    for (int i = refObj.startChapterNumber; i <= refObj.endChapterNumber; i++) {
+    for (var i = refObj.startChapterNumber; i <= refObj.endChapterNumber; i++) {
       if (refObj.startChapterNumber != refObj.endChapterNumber) {
         params['passage'] = '${refObj.book} ${i}';
       }
@@ -48,19 +48,15 @@ class GetBible extends BibleProvider {
       if (book != null) {
         book = book[0];
       } else {
-        var encoder = new JsonEncoder.withIndent("  ");
-        //print(encoder.convert(json['chapter']));
         book = json;
       }
       var chapter = book['chapter'];
-      //print(chapter);
       if (chapter == null) {}
       _writeVerses(chapter, passage, verses);
     }
 
     var jVersion = json['version'].toUpperCase();
-    return PassageQuery.fromProvider(
-        passage.toString().trim(), query.reference, jVersion,
+    return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
         verses: verses, extra: extra);
   }
 
