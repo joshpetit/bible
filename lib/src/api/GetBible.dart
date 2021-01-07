@@ -26,31 +26,49 @@ class GetBible extends BibleProvider {
       'passage': query.reference,
       'version': version,
     };
-    final uri = Uri.https('getbible.net', '/json', params);
-    final res = await http.get(uri);
-    // The response from the API isn't formated for Dart's json decoder
-    var json = jsonDecode(res.body.substring(1, res.body.length - 2));
-    var extra = json;
-    var ref = query.reference;
-    var jVersion = json['version'].toUpperCase();
-    var book = json['book'];
-    if (book != null) {
-      book = book[0];
-    } else {
-      var encoder = new JsonEncoder.withIndent("  ");
-      //print(encoder.convert(json['chapter']));
-      book = json;
-    }
-    var chapter = book['chapter'];
-    //print(chapter);
-    if (chapter == null) {}
     var verses = <String, String>{};
     var passage = StringBuffer();
+    var refObj = query as Reference;
+    var json = <String, dynamic>{};
+    var extra = <String, dynamic>{};
+    var ref = query.reference;
+    if (refObj.startChapterNumber != refObj.endChapterNumber) {
+      ref = "${refObj.startChapter.toString()} - ref.endChapterNumber}";
+    }
+    for (int i = refObj.startChapterNumber; i <= refObj.endChapterNumber; i++) {
+      if (refObj.startChapterNumber != refObj.endChapterNumber) {
+        params['passage'] = '${refObj.book} ${i}';
+      }
+      final uri = Uri.https('getbible.net', '/json', params);
+      final res = await http.get(uri);
+      // The response from the API isn't formated for Dart's json decoder
+      json = jsonDecode(res.body.substring(1, res.body.length - 2));
+      extra = json;
+      var book = json['book'];
+      if (book != null) {
+        book = book[0];
+      } else {
+        var encoder = new JsonEncoder.withIndent("  ");
+        //print(encoder.convert(json['chapter']));
+        book = json;
+      }
+      var chapter = book['chapter'];
+      //print(chapter);
+      if (chapter == null) {}
+      _writeVerses(chapter, passage, verses);
+    }
+
+    var jVersion = json['version'].toUpperCase();
+    return PassageQuery.fromProvider(
+        passage.toString().trim(), query.reference, jVersion,
+        verses: verses, extra: extra);
+  }
+
+  void _writeVerses(Map<String, dynamic> chapter, StringBuffer passage,
+      Map<String, String> verses) {
     chapter.keys.forEach((x) => {
           verses[x] = chapter[x]['verse'],
           passage.write(chapter[x]['verse'] + ' ')
         });
-    return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
-        verses: verses, extra: extra);
   }
 }

@@ -13,6 +13,7 @@ void main() {
     });
   });
 
+  // TODO: Make a general API test
   group('Test API Providers', () {
     setUp(() {
       var keys = getKeys();
@@ -20,7 +21,7 @@ void main() {
     });
 
     test('Getbible', () async {
-      var passage = await bible.queryPassage('Genesis 1',
+      var passage = await bible.queryPassage('Genesis 1-2',
           version: 'asv', providerName: 'getbible');
       expect(passage.verses.length, equals(31));
       passage = await bible.queryPassage('Genesis 1:1-4',
