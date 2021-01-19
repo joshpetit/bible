@@ -10,14 +10,18 @@ final Map _keys = <String, String>{};
 final List<BibleProvider> _providers = [
   ESVAPI(),
   GetBible(),
-  BibleOrg(),
   BibleAPI(),
+  BibleOrg(),
 ];
 
 /// The prefered way to fetch certain versions
 final Map<String, String> _defaultProviders = {
   'esv': 'esvapi',
   'asv': 'getbible',
+  'kjv': 'bibleapi',
+  'clementine': 'bibleapi',
+  'almeida': 'bibleapi',
+  'rccv': 'bibleapi',
 };
 
 /// Adds a [BibleProvider] to the list of available providers.
