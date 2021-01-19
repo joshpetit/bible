@@ -1,3 +1,5 @@
+## 0.8.0
+- Adds bibleapi
 ## 0.7.2
 - Fixes getbible API multi chapter calls
 

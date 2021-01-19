@@ -11,6 +11,7 @@ final List<BibleProvider> _providers = [
   ESVAPI(),
   GetBible(),
   BibleOrg(),
+  BibleAPI(),
 ];
 
 /// The prefered way to fetch certain versions
