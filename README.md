@@ -7,8 +7,9 @@ This package currently only supports querying these APIs:
 | Name | Requires API key| notes |
 | ----- | --------- | ---- |
 | [esvapi](https://api.esv.org/) | yes |	|
-| [getbible](https://getbible.net/api) | no |Does not (currently) support cross chapter references (i.e Genesis 2:1 - 3:4). |
+| [getbible](https://getbible.net/api) | no |Does not support verse references that cross chapters. Genesis 2-3 ✅ Gensis 2:1 - 3:5 ❌|
 | [bibleorg](https://labs.bible.org/api_web_service) | no |	 |
+| [bibleapi](https://bible-api.com/) | no | |
 
 Simple example:
 
@@ -72,7 +73,6 @@ APIs that need implementing:
 
 | Name |  Difficulty|
 | ----- | --------- |
-| [bibleapi](https://bible-api.com/) | easy |
 | [nltapi](https://api.nlt.to/) | easy |
 | [bibliaapi](https://bibliaapi.com/docs/) | moderate |
 | [scriptureapi](https://scripture.api.bible/) | hard |
