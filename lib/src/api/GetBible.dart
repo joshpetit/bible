@@ -28,20 +28,19 @@ class GetBible extends BibleProvider {
     };
     var verses = <String, String>{};
     var passage = StringBuffer();
-    var refObj = query as Reference;
     var json = <String, dynamic>{};
     var extra = <String, dynamic>{};
+    var refObj = query as Reference;
     var ref = query.reference;
-    if (refObj.startChapterNumber != refObj.endChapterNumber) {
-      ref = '${refObj.startChapter.toString()}-${refObj.endChapterNumber}';
-    }
-    for (var i = refObj.startChapterNumber; i <= refObj.endChapterNumber; i++) {
-      if (refObj.startChapterNumber != refObj.endChapterNumber) {
-        params['passage'] = '${refObj.book} ${i}';
+    var chapters = refObj.chapters;
+
+    for (var i = 0; i < chapters.length; i++) {
+      if (chapters.length != 1) {
+        params['passage'] = chapters[i].reference;
       }
       final uri = Uri.https('getbible.net', '/json', params);
       final res = await http.get(uri);
-      // The response from the API isn't formated for Dart's json decoder
+      // The response from the API isn't formated correctly for the json decoder.
       json = jsonDecode(res.body.substring(1, res.body.length - 2));
       extra = json;
       var book = json['book'];
@@ -57,7 +56,10 @@ class GetBible extends BibleProvider {
         passage.write(chapter[x]['verse'] + ' ');
       });
     }
-
+    if (refObj.referenceType == ReferenceType.CHAPTER_RANGE) {
+      ref =
+          "${refObj.book} ${refObj.startChapterNumber}:${refObj.endChapterNumber}";
+    }
     var jVersion = json['version'].toUpperCase();
     return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
         verses: verses, extra: extra);
