@@ -51,20 +51,15 @@ class GetBible extends BibleProvider {
         book = json;
       }
       var chapter = book['chapter'];
-      if (chapter == null) {}
-      _writeVerses(chapter, passage, verses);
+      chapter.keys.forEach((x) {
+        verses["${book['book_name']} ${book['chapter_nr']}:${chapter[x]['verse_nr']}"] =
+            chapter[x]['verse'];
+        passage.write(chapter[x]['verse'] + ' ');
+      });
     }
 
     var jVersion = json['version'].toUpperCase();
     return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
         verses: verses, extra: extra);
-  }
-
-  void _writeVerses(Map<String, dynamic> chapter, StringBuffer passage,
-      Map<String, String> verses) {
-    chapter.keys.forEach((x) => {
-          verses[x] = chapter[x]['verse'],
-          passage.write(chapter[x]['verse'] + ' ')
-        });
   }
 }
