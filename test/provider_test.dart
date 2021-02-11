@@ -51,6 +51,7 @@ void main() {
           version: 'akjv', providerName: 'getbible');
       expect(passage.verses.length, equals(56));
       expect(passage.extra, isNot(null));
+      expect(passage.reference, equals('Genesis 1-2'));
       expect(passage.version, equals('AKJV'));
     });
 
