@@ -1,3 +1,9 @@
+## 0.7.5
+- Adds spacing between references and version names
+- Improves testing
+- GetBible and BibleOrg verses map uses references as keys
+- Optimizes GetBible queries
+
 ## 0.7.3
 - Adds bibleapi
 
