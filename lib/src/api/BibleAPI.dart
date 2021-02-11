@@ -35,7 +35,7 @@ class BibleAPI extends BibleProvider {
           verses['${x['book_name']} ${x['chapter']}:${x['verse']}'] = x['text'],
         });
     var reference = query.reference;
-    var passage = json['text'];
+    var passage = json['text'].trim();
     var translation = json['translation_id'].toUpperCase();
     return PassageQuery.fromProvider(passage, reference, translation,
         verses: verses, extra: json);
