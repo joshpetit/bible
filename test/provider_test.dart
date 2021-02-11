@@ -46,6 +46,12 @@ void main() {
       expect(passage.verses.length, equals(4));
       expect(passage.extra, isNot(null));
       expect(passage.version, equals('ASV'));
+
+      passage = await bible.queryPassage('Genesis 1:1 - 2:3',
+          version: 'akjv', providerName: 'getbible');
+      expect(passage.verses.length, equals(56));
+      expect(passage.extra, isNot(null));
+      expect(passage.version, equals('AKJV'));
     });
 
     test('ESV API', () async {

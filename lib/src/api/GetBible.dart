@@ -60,8 +60,8 @@ class GetBible extends BibleProvider {
       ref =
           "${refObj.book} ${refObj.startChapterNumber}-${refObj.endChapterNumber}";
     }
-    var jVersion = json['version'].toUpperCase();
-    return PassageQuery.fromProvider(passage.toString().trim(), ref, jVersion,
+    version = json['version'].toUpperCase();
+    return PassageQuery.fromProvider(passage.toString().trim(), ref, version,
         verses: verses, extra: extra);
   }
 }
