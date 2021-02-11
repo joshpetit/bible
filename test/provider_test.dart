@@ -20,6 +20,18 @@ void main() {
       bible.addKeys(keys);
     });
 
+    test('All Providers', () async {
+      var providers = bible.getProviders();
+      providers.forEach((pro) async {
+        var passage = await bible.queryPassage('Genesis 1:1-5', provider: pro);
+        expect(passage, isNot(null));
+        expect(passage.passage.length, greaterThan(5));
+        if (passage.verses != null) {
+          expect(passage.verses.length, equals(5));
+        }
+      });
+    });
+
     test('BibleAPI', () async {
       var passage = await bible.queryPassage('Genesis 1:1-4',
           parameters: {'verse_numbers': 'true'}, providerName: 'bibleapi');
@@ -28,7 +40,7 @@ void main() {
     test('Getbible', () async {
       var passage = await bible.queryPassage('Genesis 1-2',
           version: 'asv', providerName: 'getbible');
-      expect(passage.verses.length, equals(31));
+      expect(passage.verses.length, equals(56));
       passage = await bible.queryPassage('Genesis 1:1-4',
           version: 'asv', providerName: 'getbible');
       expect(passage.verses.length, equals(4));
