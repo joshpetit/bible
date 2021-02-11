@@ -58,7 +58,7 @@ class GetBible extends BibleProvider {
     }
     if (refObj.referenceType == ReferenceType.CHAPTER_RANGE) {
       ref =
-          "${refObj.book} ${refObj.startChapterNumber}-${refObj.endChapterNumber}";
+          '${refObj.book} ${refObj.startChapterNumber}-${refObj.endChapterNumber}';
     }
     version = json['version'].toUpperCase();
     return PassageQuery.fromProvider(passage.toString().trim(), ref, version,
