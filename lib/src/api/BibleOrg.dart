@@ -29,7 +29,7 @@ class BibleOrg extends BibleProvider {
     };
     json.forEach((x) => {
           passage.write(x['text']),
-          verses[x['verse']] = x['text'],
+          verses['${x['bookname']} ${x['chapter']}:${x['verse']}'] = x['text'],
         });
     return PassageQuery.fromProvider(passage.toString(), query.reference, 'NET',
         extra: extra, verses: verses);
