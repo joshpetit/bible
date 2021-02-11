@@ -23,6 +23,6 @@ class PassageQuery {
 
   @override
   String toString() {
-    return '${reference}(${version})\n${passage}';
+    return '${reference} (${version})\n${passage}';
   }
 }
