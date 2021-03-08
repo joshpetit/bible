@@ -82,6 +82,28 @@ void addKeys(Map<String, String> keys) {
   _keys.addAll(keys);
 }
 
+/// Returns a list of all the versions
+/// that can be retrieved using
+/// [queryPassage]. Only includes free
+/// APIs and versions with the necessary
+/// API keys.
+List<String> get availableVersions {
+  var available = <String>[];
+  List<String> apikeys = _keys.keys.toList();
+  apikeys.forEach((key) {
+    var provider = getProvider(key);
+    if (provider != null) {
+      available.addAll(provider.versions);
+    }
+  });
+  _providers.forEach((p) {
+    if (!p.requiresKey) {
+      available.addAll(p.versions);
+    }
+  });
+  return available;
+}
+
 /// Query a provider for a bible passage.
 ///
 /// [Bible] will use the recommended/default query
