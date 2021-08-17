@@ -21,16 +21,16 @@ class BibleAPI extends BibleProvider {
   /// Queries the [bibleapi](https://bible-api.com/).
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key, String version}) async {
+      {Map<String, String>? parameters, String? key, String? version}) async {
     final params = {
-      'verse_numbers': '${parameters['verse_numbers'] ?? 'false'}',
+      'verse_numbers': '${parameters!['verse_numbers'] ?? 'false'}',
       'translation': "${version ?? 'web'}",
     };
     final uri = Uri.https('bible-api.com', '/${query.reference}', params);
     final res = await http.get(uri);
     var json = jsonDecode(res.body);
     var versesRaw = json['verses'];
-    var verses = <String, String>{};
+    var verses = <String, String?>{};
     versesRaw.forEach((x) => {
           verses['${x['book_name']} ${x['chapter']}:${x['verse']}'] = x['text'],
         });

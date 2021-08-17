@@ -19,5 +19,5 @@ abstract class BibleProvider {
 
   /// Fetch a passage from this provider's designated provider source.
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key, String version});
+      {Map<String, String>? parameters, String? key, String? version});
 }

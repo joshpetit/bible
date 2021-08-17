@@ -67,9 +67,14 @@ List<BibleProvider> getProviders() => _providers;
 List<BibleProvider> get providers => _providers;
 
 /// Returns the key for a [BibleProvider].
-String getKey(String provider) {
+String? getKey(String provider) {
   return _keys[provider];
 }
+
+void removeKey(String provider) {
+  _keys.remove(provider);
+}
+
 
 /// Adds API key to the Bible Map.
 ///
@@ -89,7 +94,7 @@ void addKeys(Map<String, String> keys) {
 /// API keys.
 List<String> get availableVersions {
   var available = <String>[];
-  List<String> apikeys = _keys.keys.toList();
+  List<String> apikeys = _keys.keys.toList() as List<String>;
   apikeys.forEach((key) {
     var provider = getProvider(key);
     if (provider != null) {
@@ -111,13 +116,13 @@ List<String> get availableVersions {
 /// parameter. If an adequet provider is not found to supply
 /// the version request or if the reference is invalid, a
 /// null value will be returned.
-Future<PassageQuery> queryPassage(String queryReference,
-    {String version,
-    BibleProvider provider,
-    Map<String, String> parameters,
+Future<PassageQuery>? queryPassage(String queryReference,
+    {String? version,
+    BibleProvider? provider,
+    Map<String, String>? parameters,
     useParser = true,
-    String providerName,
-    String key}) {
+    String? providerName,
+    String? key}) {
   if (provider == null && providerName != null) {
     provider = getProvider(providerName);
   }
@@ -130,7 +135,7 @@ Future<PassageQuery> queryPassage(String queryReference,
   if (provider == null) {
     return null;
   }
-  BibleReference ref;
+  BibleReference? ref;
   if (useParser) {
     ref = parseReference(queryReference);
   }

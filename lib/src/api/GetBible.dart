@@ -21,18 +21,18 @@ class GetBible extends BibleProvider {
   /// Queries [getbible.net](https://getbible.net/api).
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key, String version}) async {
+      {Map<String, String>? parameters, String? key, String? version}) async {
     final params = {
       'passage': query.reference,
       'version': version,
     };
-    var verses = <String, String>{};
+    var verses = <String, String?>{};
     var passage = StringBuffer();
-    var json = <String, dynamic>{};
-    var extra = <String, dynamic>{};
+    Map<String, dynamic>? json = <String, dynamic>{};
+    Map<String, dynamic>? extra = <String, dynamic>{};
     var refObj = query as Reference;
-    var ref = query.reference;
-    var chapters = refObj.chapters;
+    String? ref = query.reference;
+    var chapters = refObj.chapters!;
 
     for (var i = 0; i < chapters.length; i++) {
       if (chapters.length != 1) {
@@ -43,7 +43,7 @@ class GetBible extends BibleProvider {
       // The response from the API isn't formated correctly for the json decoder.
       json = jsonDecode(res.body.substring(1, res.body.length - 2));
       extra = json;
-      var book = json['book'];
+      var book = json!['book'];
       if (book != null) {
         book = book[0];
       } else {
@@ -60,7 +60,7 @@ class GetBible extends BibleProvider {
       ref =
           '${refObj.book} ${refObj.startChapterNumber}-${refObj.endChapterNumber}';
     }
-    version = json['version'].toUpperCase();
+    version = json!['version'].toUpperCase();
     return PassageQuery.fromProvider(passage.toString().trim(), ref, version,
         verses: verses, extra: extra);
   }

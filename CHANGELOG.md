@@ -1,3 +1,6 @@
+## 1.0.0
+- Null Safety!
+
 ## 0.7.5
 - Adds spacing between references and version names
 - Improves testing

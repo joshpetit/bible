@@ -13,11 +13,11 @@ class ESVAPI extends BibleProvider {
   /// Queries the [esvapi](https://api.esv.org/).
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key, String version}) async {
+      {Map<String, String>? parameters, String? key, String? version}) async {
     final params = {
       'q': query.reference,
       'include-passage-references':
-          '${parameters['include-passage-references'] ?? 'false'}',
+          '${parameters!['include-passage-references'] ?? 'false'}',
       'include-verse-numbers':
           '${parameters['include-verse-numbers'] ?? 'false'}',
       'include-first-verse-numbers':

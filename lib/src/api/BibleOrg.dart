@@ -14,7 +14,7 @@ class BibleOrg extends BibleProvider {
   /// extra.extra field. This contains the original API response.
   @override
   Future<PassageQuery> getPassage(BibleReference query,
-      {Map<String, String> parameters, String key, String version}) async {
+      {Map<String, String>? parameters, String? key, String? version}) async {
     final params = {
       'type': 'json',
       'passage': query.reference,
@@ -23,7 +23,7 @@ class BibleOrg extends BibleProvider {
     final res = await http.get(uri);
     var json = jsonDecode(res.body);
     var passage = StringBuffer();
-    var verses = <String, String>{};
+    var verses = <String, String?>{};
     var extra = {
       'extra': json,
     };
